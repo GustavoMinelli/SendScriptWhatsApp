@@ -5,15 +5,13 @@ async function enviarScript(scriptText){
 	
 	if(!textarea) throw new Error("Não há uma conversa aberta")
 	
-	for(const line of lines){
-		console.log(line)
-	
+	for(const line of lines){	
 		textarea.focus();
 		document.execCommand('insertText', false, line);
 		textarea.dispatchEvent(new Event('change', {bubbles: true}));
 	
 		setTimeout(() => {
-			(main.querySelector(`[data-testid="send"]`) || main.querySelector(`[data-icon="send"]`)).click();
+			(main.querySelector(`[data-testid="wds-ic-send-filled"]`) || main.querySelector(`[data-icon="wds-ic-send-filled"]`)).click();
 		}, 100);
 		
 		if(lines.indexOf(line) !== lines.length - 1) await new Promise(resolve => setTimeout(resolve, 250));
